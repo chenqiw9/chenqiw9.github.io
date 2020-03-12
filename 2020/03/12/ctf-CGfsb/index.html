@@ -6,30 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>ctf-CGfbs | Hexo</title>
+  <title>ctf-CGfsb | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="description" content="CGfsb详解萌新教程 CGfsb是我刷pwn的第一题除了get-shell值得庆祝一下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ctf-CGfbs">
-<meta property="og:url" content="http://yoursite.com/2020/03/12/ctf-CGfbs/index.html">
+<meta property="og:title" content="ctf-CGfsb">
+<meta property="og:url" content="http://yoursite.com/2020/03/12/ctf-CGfsb/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="CGfsb详解萌新教程 CGfsb是我刷pwn的第一题除了get-shell值得庆祝一下">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfbs/1.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfbs/image-20200312164832991.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfbs/image-20200312170003743.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfbs/image-20200312170348201.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfbs/image-20200312170517723.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfbs/image-20200312172141102.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfbs/image-20200312172815387.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfbs/image-20200312175015525.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfsb/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfsb/image-20200312164832991.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfsb/image-20200312170003743.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfsb/image-20200312170348201.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfsb/image-20200312170517723.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfsb/image-20200312172141102.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfsb/image-20200312172815387.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/12/ctf-CGfsb/image-20200312175015525.png">
 <meta property="article:published_time" content="2020-03-12T10:25:33.244Z">
 <meta property="article:modified_time" content="2020-03-12T10:34:42.413Z">
 <meta property="article:author" content="Chenqiw">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/03/12/ctf-CGfbs/1.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/12/ctf-CGfsb/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -180,14 +180,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ctf-CGfbs" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ctf-CGfsb" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      ctf-CGfbs
+      ctf-CGfsb
     </h1>
   
 
@@ -199,7 +199,7 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/03/12/ctf-CGfbs/" class="archive-article-date">
+<a href="/2020/03/12/ctf-CGfsb/" class="archive-article-date">
         <time datetime="2020-03-12T10:25:33.244Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-12</time>
 </a>
 
@@ -244,27 +244,27 @@
 <li>pwntools </li>
 </ul>
 <p>先<em>file</em>一下看看文件信息  </p>
-<p> <img src="/2020/03/12/ctf-CGfbs/1.png" alt="1"></p>
+<p> <img src="/2020/03/12/ctf-CGfsb/1.png" alt="1"></p>
 <p>32位，好的按规矩checksec一下  <a href="https://www.sogou.com/link?url=hedJjaC291OV7dVab-QfvHtdr0qpeLU_KjJro65Lq0-f1ubkVzVGdw.." target="_blank" rel="noopener">checksec说明</a></p>
-<p>​                                              <img src="/2020/03/12/ctf-CGfbs/image-20200312164832991.png" alt="image-20200312164832991"></p>
+<p>​                                              <img src="/2020/03/12/ctf-CGfsb/image-20200312164832991.png" alt="image-20200312164832991"></p>
 <p>开了NX和CANNARY  </p>
 <p>先运行一下看看程序的过程</p>
-<p><img src="/2020/03/12/ctf-CGfbs/image-20200312170003743.png" alt="image-20200312170003743"></p>
+<p><img src="/2020/03/12/ctf-CGfsb/image-20200312170003743.png" alt="image-20200312170003743"></p>
 <p>进行了两次输入，ok现在我们用IDA pro打开 </p>
-<p><img src="/2020/03/12/ctf-CGfbs/image-20200312170348201.png" alt="image-20200312170348201"></p>
+<p><img src="/2020/03/12/ctf-CGfsb/image-20200312170348201.png" alt="image-20200312170348201"></p>
 <p>（萌新）看着头晕，F5查看伪代码<del>还是c语言比较舒服</del></p>
-<p><img src="/2020/03/12/ctf-CGfbs/image-20200312170517723.png" alt="image-20200312170517723"></p>
+<p><img src="/2020/03/12/ctf-CGfsb/image-20200312170517723.png" alt="image-20200312170517723"></p>
 <p>阅读一下程序很容易发现pwnme=8时就可以拿到flag，但是又有帅的发光的萌新发现我们无法改变pwnme的值，那怎么办呢 </p>
 <p>但是我们既然选择做pwn那应该要骨头里挑鸡蛋，这时我们看到pwnme的上面一行printf函数有点怪异  </p>
 <p>这就要牵扯到一个考点<a href="https://blog.csdn.net/qq_43394612/article/details/84900668" target="_blank" rel="noopener">格式化字符串漏洞</a>  &lt;&lt;萌新们可以点进去看看，这位大佬写得特别好，我也是看了这个才勉强掌握，<del>等我完全理解后也准备写一篇</del> </p>
 <p>想必大家都去看过了，都懂了个大概，<del>没看懂多看即便</del>   </p>
 <p>理解了格式化字符串漏洞，就思路清楚了 </p>
 <p>我们首先要得到pwnme的地址（双击pwnme） </p>
-<p><img src="/2020/03/12/ctf-CGfbs/image-20200312172141102.png" alt="image-20200312172141102"></p>
+<p><img src="/2020/03/12/ctf-CGfsb/image-20200312172141102.png" alt="image-20200312172141102"></p>
 <p><strong><em>-地址为0804A068</em></strong> </p>
 <p>好的现在我们还差一个偏移量 </p>
 <p>打开终端</p>
-<p><img src="/2020/03/12/ctf-CGfbs/image-20200312172815387.png" alt="image-20200312172815387"></p>
+<p><img src="/2020/03/12/ctf-CGfsb/image-20200312172815387.png" alt="image-20200312172815387"></p>
 <p>数了数偏移为10</p>
 <p>nice，万事俱备只欠脚本<del>exp</del></p>
 <p>输入vim CGfbs.py开始写exp</p>
@@ -273,7 +273,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">p = remote(<span class="string">" 111.198.29.45"</span>, <span class="number">35935</span>)</span><br><span class="line"></span><br><span class="line">​    payload = p32(<span class="number">0x0804A068</span>) + <span class="string">'aaaa'</span> + <span class="string">'%10$n'</span></span><br><span class="line"></span><br><span class="line">​	io.sendlineafter(<span class="string">'name:'</span>,<span class="string">'aaa'</span>)</span><br><span class="line">​	io.sendlineafter(<span class="string">'please:'</span>,payload)</span><br><span class="line">​	io.interactive()</span><br></pre></td></tr></table></figure>
 
 <p>好啦，大功告成，运行CGfsb</p>
-<p><img src="/2020/03/12/ctf-CGfbs/image-20200312175015525.png" alt="image-20200312175015525"></p>
+<p><img src="/2020/03/12/ctf-CGfsb/image-20200312175015525.png" alt="image-20200312175015525"></p>
 <p>pwn的路很难走，一起加油吧！</p>
 
     
@@ -289,7 +289,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://yoursite.com/2020/03/12/ctf-CGfbs/" title="ctf-CGfbs" target="_blank">http://yoursite.com/2020/03/12/ctf-CGfbs/</a>
+          <a href="http://yoursite.com/2020/03/12/ctf-CGfsb/" title="ctf-CGfsb" target="_blank">http://yoursite.com/2020/03/12/ctf-CGfsb/</a>
         </li>
         
         <li>
@@ -356,7 +356,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/12/ctf-CGfbs/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/12/ctf-CGfsb/" alt="微信分享二维码"> -->
     </div>
 </div>
 
