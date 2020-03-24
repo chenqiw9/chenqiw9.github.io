@@ -90,10 +90,10 @@
   
   
     <div class="header-content">
-      <div class="post-image" style="background-image: url(https://qiniu.miiiku.xyz/src/images/banner.jpg)"></div>
+      <div class="post-image" style="background-image: url(https://chenqiw9.github.io/2020/03/24/%E5%B0%81%E9%9D%A2%E9%9B%86/2.jpg)"></div>
       <div class="post-text">
         <div class="type-wrap">
-          
+          <a class="article-category-link" href="/categories/%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2/">格式化字符串</a>
         </div>
         <h1 class="title-wrap">string</h1>
         <h2 class="title-sub-wrap">
@@ -101,7 +101,7 @@
           <span>发布于</span>
           
   <a href="javascript:;" class="article-date">
-    <time datetime="2020-03-19T03:08:02.172Z" itemprop="datePublished">2020-03-19</time>
+    <time datetime="2020-03-18T16:00:00.000Z" itemprop="datePublished">2020-03-19</time>
   </a>
 
         </h2>
@@ -126,13 +126,11 @@
 
       <div class="article-entry">
         <h1 id="string"><a href="#string" class="headerlink" title="string"></a>string</h1><p>一道非常有意思的题目，当初困惑了我不久。 </p>
-<a id="more"></a> 
-
 <p><img src="/2020/03/19/string/image-20200318234451089.png" alt="image-20200318234451089"></p>
 <p>64位，开了这么多有点麻烦，运行一下程序 ……….额程序有点长，做的选择比较多，直接去IDA看吧  </p>
 <p>看了蛮久的代码，终于看懂了大概过程，首先输入名字，然后输入要去的方向（只能去east）然后进行左右选择（只能选1）接着他让我们输入一个地址，后面是输入你的愿望，把你的愿望打印两遍，这里可以发现格式化字符串漏洞，看到最后一个函数，只要满足a1=a1[1]就可以进行一次read输入，不过这里我们遇到了mmap函数，百度一下可以发现<em>mmap将一个文件或者其它对象映射进内存</em> </p>
 <p><img src="/2020/03/19/string/image-20200319001854705.png" alt="image-20200319001854705"></p>
-<p>刚好我们写入的数据就是到了v1中，这就说明我们可以直接在这写入shellcode便可以直接执行 （<a href="https://bbs.ichunqiu.com/thread-42285-1-1.html" target="_blank" rel="noopener">有关于shellcode</a>） 这里我们可以调用pwntools自带的,asm(shellcraft.sh()  </p>
+<p>刚好我们写入的数据就是到了v1中，这就说明我们可以直接在这写入shellcode便可以直接执行 （<a href="https://bbs.ichunqiu.com/thread-42285-1-1.html" target="_blank" rel="noopener">有关于shellcode</a>） 这里我们可以调用pwntools自带的,asm(shellcraft.sh() )</p>
 <p>那么现在的问题就是怎么让a1=a1[1],在这个之前我们发现了一个格式化字符串漏洞，因此我们可以利用一下这个漏洞，使得a1=a1[1] ，接下来就要计算偏移 </p>
 <p><img src="/2020/03/19/string/image-20200319082120216.png" alt="image-20200319082120216"></p>
 <p>数了一下，偏移为8，但是因为在64位程序中，如果我们将地址打包会生成好多个‘00’，而在字符串中‘00’就代表结束，所以在printf到‘00’时，就被认为字符串已经结束了，自然不会继续往后面printf了，也即是说我们的字符串都被’00’给截断了，所以我们可以把地址放在后面，那么偏移就是九了。 a1的值是68，a2的值是85。 </p>
@@ -145,7 +143,7 @@
       </div>
 
       <div class="article-footer">
-        
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XCTF/" rel="tag">#XCTF</a></li></ul>
       </div>
 
       <div class="article-navs">
@@ -153,8 +151,10 @@
 <nav class="card-container card-article-nav">
   <div class="card-wrap">
     
-      <div id="article-nav-newer" class="card-item">
+      <div id="article-nav-newer" class="card-item img">
         <article>
+          
+            <div class="card-cover" style="background-image: url(https://chenqiw9.github.io/2020/03/24/%E5%B0%81%E9%9D%A2%E9%9B%86/1.jpg)"></div>
           
           <a class="card-link article-nav-link" href="/2020/03/20/Mary_Morton/"></a>
           <strong class="article-nav-caption">Newer</strong>
@@ -167,8 +167,10 @@
       </div>
     
     
-      <div id="article-nav-older" class="card-item">
+      <div id="article-nav-older" class="card-item img">
         <article>
+          
+            <div class="card-cover" style="background-image: url(https://chenqiw9.github.io/2020/03/24/%E5%B0%81%E9%9D%A2%E9%9B%86/3.jpg)"></div>
           
           <a class="card-link article-nav-link" href="/2020/03/18/cgpwn3/"></a>
           <strong class="article-nav-caption">Older</strong>

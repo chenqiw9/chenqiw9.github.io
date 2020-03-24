@@ -17,7 +17,7 @@
 
   
 
-  <title>cgpwn3 | 辰祈w</title>
+  <title>Category: ROP | 辰祈w</title>
 
   
 
@@ -73,7 +73,7 @@
 
     
 <!-- header container -->
-<header class="header-container post">
+<header class="header-container">
 
   
   
@@ -83,30 +83,20 @@
 
   
   
-
-  
-  
-
-  
-  
+    
     <div class="header-content">
-      <div class="post-image" style="background-image: url(https://chenqiw9.github.io/2020/03/24/%E5%B0%81%E9%9D%A2%E9%9B%86/3.jpg)"></div>
+      <div class="post-image" style="background-image: url(https://qiniu.miiiku.xyz/src/images/banner.jpg)"></div>
       <div class="post-text">
-        <div class="type-wrap">
-          <a class="article-category-link" href="/categories/ROP/">ROP</a>
-        </div>
-        <h1 class="title-wrap">cgpwn3</h1>
-        <h2 class="title-sub-wrap">
-          <strong>Chenqiw</strong>
-          <span>发布于</span>
-          
-  <a href="javascript:;" class="article-date">
-    <time datetime="2020-03-18T14:51:29.766Z" itemprop="datePublished">2020-03-18</time>
-  </a>
-
-        </h2>
+        <h1 class="title-wrap">ROP</h1>
+        <h2 class="title-sub-wrap">当前分类下共有1篇文章</h2>
       </div>
     </div>
+  
+
+  
+  
+
+  
   
 
   
@@ -114,91 +104,47 @@
 
   </header>
 
-    <!-- 文章 -->
+    <!-- 分类归档 -->
 
-<!-- 文章内容 -->
-
-<div class="body-container">
-  <article class="content-container article-container">
-    <div class="article-content">
-      
-      
-
-      <div class="article-entry">
-        <h1 id="cgpwn3"><a href="#cgpwn3" class="headerlink" title="cgpwn3"></a>cgpwn3</h1><p>一个最基础的ROP和栈溢出  </p>
-<p>先看一下保护</p>
-<p><img src="/2020/03/18/cgpwn3/image-20200318221608819.png" alt="image-20200318221608819"></p>
-<p>32位，只开了NX，运行一下 </p>
-<p><img src="/2020/03/18/cgpwn3/image-20200318221709922.png" alt="image-20200318221709922"></p>
-<p>进行了两次输入 拿到IDA看看 </p>
-<p><img src="/2020/03/18/cgpwn3/image-20200318221953974.png" alt="image-20200318221953974"></p>
-<p>发现了危险的gets函数可以栈溢出 看到了system函数但是没有看到/bin/sh，头疼了一下，后面想了想，发现fgets函数里面不就可以写入bin/sh/字符串么，看看name的地址为0x0804A080  </p>
-<p>好多接下来就可以写exp   </p>
-<p><img src="/2020/03/18/cgpwn3/image-20200318224759543.png" alt="image-20200318224759543"></p>
-<p>这里说明一下在系统调用函数的时候会先将返回地址进行压栈，所以“aaaa”的作用是充当返回地址，防止将/bin/sh压栈。</p>
-<p><img src="/2020/03/18/cgpwn3/image-20200318224731489.png" alt="image-20200318224731489"></p>
-
-      </div>
-
-      <div class="article-footer">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XCTF/" rel="tag">#XCTF</a></li></ul>
-      </div>
-
-      <div class="article-navs">
+<!-- post list container -->
+<div class="body-container float">
+  <div class="content-container article-list">
+    <div class="card-container card-articles">
+      <div class="card-wrap">
         
-<nav class="card-container card-article-nav">
-  <div class="card-wrap">
-    
-      <div id="article-nav-newer" class="card-item img">
-        <article>
           
-            <div class="card-cover" style="background-image: url(https://chenqiw9.github.io/2020/03/24/%E5%B0%81%E9%9D%A2%E9%9B%86/2.jpg)"></div>
-          
-          <a class="card-link article-nav-link" href="/2020/03/19/string/"></a>
-          <strong class="article-nav-caption">Newer</strong>
-          <p class="article-nav-title">
-            
-              string
-            
-          </p>
-        </article>
+          <div class="card-item img">
+            <article>
+              
+                <div class="card-cover" style="background-image: url(https://chenqiw9.github.io/2020/03/24/%E5%B0%81%E9%9D%A2%E9%9B%86/3.jpg)"></div>
+              
+              
+                <a class="article-link card-link" href="/2020/03/18/cgpwn3/" itemprop="url"></a>
+              
+              <h2 class="article-title">cgpwn3</h2>
+              <div class="article-meta">
+                <strong>Chenqiw</strong>
+                <span>发布于</span>
+                
+  <a href="/2020/03/18/cgpwn3/" class="article-date">
+    <time datetime="2020-03-18T14:51:29.766Z" itemprop="datePublished">2020-03-18</time>
+  </a>
+
+              </div>
+              <div class="article-category">
+                <a class="article-category-link" href="/categories/ROP/">ROP</a>
+              </div>
+            </article>
+          </div>
+        
       </div>
-    
-    
-      <div id="article-nav-older" class="card-item img">
-        <article>
-          
-            <div class="card-cover" style="background-image: url(https://chenqiw9.github.io/2020/03/24/%E5%B0%81%E9%9D%A2%E9%9B%86/4.jpg)"></div>
-          
-          <a class="card-link article-nav-link" href="/2020/03/15/guess_num/"></a>
-          <strong class="article-nav-caption">Older</strong>
-          <p class="article-nav-title">
-            
-              guess_num
-            
-          </p>
-        </article>
-      </div>
-    
-  </div>
-</nav>
-
-      </div>
-      
-      
-
-  
-  <div class="valine-container">
-    <div id="valine_thread" class="valine-thread"></div>
-  </div>
-
-  
-  
-
-
     </div>
-  </article>
+  </div>
 </div>
+
+<!-- page container -->
+
+
 
     <!-- footer container -->
 <footer id="footer" class="footer">
