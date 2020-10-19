@@ -6,23 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>关于我 | 辰祈w</title>
+  <title>runcode | 辰祈w</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="小萌新pwn选手，常常自闭">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于我">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+  <meta name="description" content="runcode考点：c语言难度系数：*">
+<meta property="og:type" content="article">
+<meta property="og:title" content="runcode">
+<meta property="og:url" content="http://yoursite.com/2020/10/19/runcode/index.html">
 <meta property="og:site_name" content="辰祈w">
-<meta property="og:description" content="小萌新pwn选手，常常自闭">
+<meta property="og:description" content="runcode考点：c语言难度系数：*">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/about/index/head.jpg">
-<meta property="article:published_time" content="2020-03-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-25T00:46:57.422Z">
+<meta property="article:published_time" content="2020-10-19T12:28:08.140Z">
+<meta property="article:modified_time" content="2020-10-19T12:28:10.162Z">
 <meta property="article:author" content="Chenqiw">
+<meta property="article:tag" content="2020极客大挑战">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/about/index/head.jpg">
   
     <link rel="alternative" href="/atom.xml" title="辰祈w" type="application/atom+xml">
   
@@ -189,14 +188,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-runcode" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于我
+      runcode
     </h1>
   
 
@@ -208,8 +207,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2020-03-24T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-25</time>
+<a href="/2020/10/19/runcode/" class="archive-article-date">
+        <time datetime="2020-10-19T12:28:08.140Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-19</time>
 </a>
 
   
@@ -222,7 +221,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">10字</span>
+      <span class="post-count">60字</span>
     </span>
   </span>
 
@@ -242,8 +241,14 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>小萌新pwn选手，常常自闭</p>
-<p><img src="/about/index/head.jpg" alt="head"></p>
+    <h1 id="runcode"><a href="#runcode" class="headerlink" title="runcode"></a>runcode</h1><h6 id="考点：c语言"><a href="#考点：c语言" class="headerlink" title="考点：c语言"></a>考点：c语言</h6><h5 id="难度系数："><a href="#难度系数：" class="headerlink" title="难度系数：*"></a>难度系数：*</h5><a id="more"></a>
+
+<p>就是写个c程序 </p>
+<p>exp </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> b[<span class="number">100</span>];</span><br><span class="line">	FILE  *fp;</span><br><span class="line"></span><br><span class="line">	fp = fopen(<span class="string">"/home/ctf/flag"</span>,<span class="string">"r"</span>);</span><br><span class="line">  <span class="keyword">do</span>&#123;</span><br><span class="line">       fgets(b,<span class="keyword">sizeof</span>(b),fp);</span><br><span class="line">       <span class="built_in">printf</span>(<span class="string">"%s"</span>,b);</span><br><span class="line">     &#125;<span class="keyword">while</span>(!feof(fp));</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
 
     
 
@@ -258,7 +263,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://yoursite.com/about/index.html" title="关于我" target="_blank">http://yoursite.com/about/index.html</a>
+          <a href="http://yoursite.com/2020/10/19/runcode/" title="runcode" target="_blank">http://yoursite.com/2020/10/19/runcode/</a>
         </li>
         
         <li>
@@ -275,7 +280,29 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">2020极客大挑战</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/基础//" class="article-tag-list-link color3">基础</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -325,7 +352,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/10/19/runcode/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -337,6 +364,16 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/19/fmt/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">fmt</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -406,7 +443,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

