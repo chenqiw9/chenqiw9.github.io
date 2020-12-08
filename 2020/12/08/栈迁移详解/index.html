@@ -18,11 +18,11 @@
 <meta property="og:description" content="栈迁移详解 (萌新向)最近有个小可爱问我栈迁移的问题，我就自己总结了一下最基础的栈迁移，之后再慢慢补充">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://inews.gtimg.com/newsapp_ls/0/12879489330/0">
-<meta property="og:image" content="https://inews.gtimg.com/newsapp_ls/0/12879489349/0">
-<meta property="og:image" content="https://inews.gtimg.com/newsapp_ls/0/12879489368/0">
+<meta property="og:image" content="https://inews.gtimg.com/newsapp_ls/0/12880474605/0">
+<meta property="og:image" content="https://inews.gtimg.com/newsapp_ls/0/12880474641/0">
 <meta property="og:image" content="https://inews.gtimg.com/newsapp_ls/0/12879489379/0">
 <meta property="article:published_time" content="2020-12-07T23:46:49.978Z">
-<meta property="article:modified_time" content="2020-12-07T23:46:33.869Z">
+<meta property="article:modified_time" content="2020-12-08T04:02:49.978Z">
 <meta property="article:author" content="Chenqiw">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://inews.gtimg.com/newsapp_ls/0/12879489330/0">
@@ -260,10 +260,10 @@
 <p>如果连续执行2次leave；ret会怎么样？ 及如下布局</p>
 <p><img src="https://inews.gtimg.com/newsapp_ls/0/12879489330/0" alt="image-20201208072354412"></p>
 <p>我们将ebp上用bss的地址覆盖，当这个程序执行结束会自动调用程序本身的leave；ret；<br>首先会执行mov esp,ebp，<br>及</p>
-<p><img src="https://inews.gtimg.com/newsapp_ls/0/12879489349/0" alt="image-20201208072718855"></p>
-<p>rsp和ebp同时指向一个地方bss<br>然后执行pop ebp;<br>pop ebp的意思就是从栈顶弹出一个数据到ebp中，而这时栈顶esp指向的是bss，那么就是bss会被弹出并填充到ebp上面，然后esp会向下移动如图</p>
-<p><img src="https://inews.gtimg.com/newsapp_ls/0/12879489368/0" alt="image-20201208073326433"></p>
-<p>然后程序执行ret；但是这个时候<br>rsp上面保存的仍然是leave;ret;<br>所以他便会继续执行leave;ret;<br>同上，首先会执行mov esp,ebp，<br>那么就会将栈顶esp指向bss了<br>然后pop ebp，esp就会向下移动<br>于是如下</p>
+<p><img src="https://inews.gtimg.com/newsapp_ls/0/12880474605/0" alt="image-20201208120117988"></p>
+<p>esp和ebp同时指向一个地方bss<br>然后执行pop ebp;<br>pop ebp的意思就是从栈顶弹出一个数据到ebp中，而这时栈顶esp指向的是bss，那么就是bss会被弹出并填充到ebp上面，然后esp会向下移动如图</p>
+<p><img src="https://inews.gtimg.com/newsapp_ls/0/12880474641/0" alt="image-20201208120200908"></p>
+<p>然后程序执行ret；但是这个时候<br>esp上面保存的仍然是leave;ret;<br>所以他便会继续执行leave;ret;<br>同上，首先会执行mov esp,ebp，<br>那么就会将栈顶esp指向bss了<br>然后pop ebp，esp就会向下移动<br>于是如下</p>
 <p><img src="https://inews.gtimg.com/newsapp_ls/0/12879489379/0" alt="image-20201208074011823"></p>
 <p>然后再调用ret，及执行栈顶esp上面的代码<br>从上述步骤可以看出，通过两次leave；ret；就可以将栈迁移到其他的地方，比如上面就是将栈迁移到了bss段上面。这就是最基础的栈迁移</p>
 
@@ -526,11 +526,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">N1CTF 2020</a>
+                <a href="javascript:void(0)" class="js-tag color3">比赛</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">比赛</a>
+                <a href="javascript:void(0)" class="js-tag color1">N1CTF 2020</a>
               </li>
             
             <div class="clearfix"></div>
