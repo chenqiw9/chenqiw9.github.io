@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="2021 强网杯pwn wp欸，差一道内核就能进线下，说明现在不学学内核，都快变成混子了，要早点抓紧进度了。   no_output首先通过\x00绕过比较进入 sub_8049269()，然后通过输入-2147483648和-1，触发signal，关于为啥会触发signal，这里利用到了汇编中idiv除法操作的0号中断报错也叫做除法溢出，触发signal。进入sub_8049236函数，里面有个">
+  <meta name="description" content="2021 强网杯pwn wp欸，差一道内核就能进线下，说明现在不学学内核，都快变成混子了，要早点抓紧进度了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2021 强网杯pwn wp">
 <meta property="og:url" content="http://yoursite.com/2021/06/27/2021%20%E5%BC%BA%E7%BD%91%E6%9D%AFpwn%20wp/index.html">
 <meta property="og:site_name" content="辰祈w">
-<meta property="og:description" content="2021 强网杯pwn wp欸，差一道内核就能进线下，说明现在不学学内核，都快变成混子了，要早点抓紧进度了。   no_output首先通过\x00绕过比较进入 sub_8049269()，然后通过输入-2147483648和-1，触发signal，关于为啥会触发signal，这里利用到了汇编中idiv除法操作的0号中断报错也叫做除法溢出，触发signal。进入sub_8049236函数，里面有个">
+<meta property="og:description" content="2021 强网杯pwn wp欸，差一道内核就能进线下，说明现在不学学内核，都快变成混子了，要早点抓紧进度了。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-06-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-21T15:10:18.066Z">
+<meta property="article:modified_time" content="2021-07-21T15:13:54.901Z">
 <meta property="article:author" content="Chenqiw">
 <meta name="twitter:card" content="summary">
   
@@ -241,7 +241,7 @@
   <div class="article-entry" itemprop="articleBody">
     
     <h1 id="2021-强网杯pwn-wp"><a href="#2021-强网杯pwn-wp" class="headerlink" title="2021 强网杯pwn wp"></a>2021 强网杯pwn wp</h1><p>欸，差一道内核就能进线下，说明现在不学学内核，都快变成混子了，要早点抓紧进度了。</p>
-<!--moew-->
+<a id="more"></a>
 
 <h3 id="no-output"><a href="#no-output" class="headerlink" title="no_output"></a>no_output</h3><p>首先通过\x00绕过比较进入 sub_8049269()，然后通过输入-2147483648和-1，触发signal，关于为啥会触发signal，这里利用到了汇编中idiv除法操作的0号中断报错也叫做除法溢出，触发signal。进入sub_8049236函数，里面有个栈溢出，然后利用roputils工具利用32位pwn dl-resolve来get shell.</p>
 <p>exp如下</p>
