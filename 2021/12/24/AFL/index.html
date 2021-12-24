@@ -6,17 +6,32 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 辰祈w</title>
+  <title>AFL | 辰祈w</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="辰祈w">
-<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
+  <meta name="description" content="AFL(fuzz)初体验AFL是一种用来fuzzing的一种工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AFL">
+<meta property="og:url" content="http://yoursite.com/2021/12/24/AFL/index.html">
 <meta property="og:site_name" content="辰祈w">
+<meta property="og:description" content="AFL(fuzz)初体验AFL是一种用来fuzzing的一种工具">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2021/12/24/AFL/image-20211224154837206.png">
+<meta property="og:image" content="http://yoursite.com/2021/12/24/AFL/image-20211224155500580.png">
+<meta property="og:image" content="http://yoursite.com/2021/12/24/AFL/image-20211224155928702.png">
+<meta property="og:image" content="http://yoursite.com/2021/12/24/AFL/image-20211224160138865.png">
+<meta property="og:image" content="http://yoursite.com/2021/12/24/AFL/image-20211224160435059.png">
+<meta property="og:image" content="http://yoursite.com/2021/12/24/AFL/image-20211224161219914.png">
+<meta property="og:image" content="http://yoursite.com/2021/12/24/AFL/image-20211224161633802.png">
+<meta property="og:image" content="http://yoursite.com/2021/12/24/AFL/image-20211224162022086.png">
+<meta property="og:image" content="http://yoursite.com/2021/12/24/AFL/image-20211224162212027.png">
+<meta property="og:image" content="http://yoursite.com/2021/12/24/AFL/image-20211224162224267.png">
+<meta property="article:published_time" content="2021-12-24T08:52:47.000Z">
+<meta property="article:modified_time" content="2021-12-24T09:15:07.662Z">
 <meta property="article:author" content="Chenqiw">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2021/12/24/AFL/image-20211224154837206.png">
   
     <link rel="alternative" href="/atom.xml" title="辰祈w" type="application/atom+xml">
   
@@ -183,218 +198,255 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-AFL" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/12/24/%E6%B9%96%E6%B9%98%E6%9D%AFwp/" class="archive-article-date">
-        <time datetime="2020-12-23T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-24</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/12/24/%E6%B9%96%E6%B9%98%E6%9D%AFwp/" target="_blank">湖湘杯wp</a>
   
+    <h1 class="article-title" itemprop="name">
+      AFL
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/12/12/2020%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/" class="archive-article-date">
-        <time datetime="2020-12-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-12</time>
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2021/12/24/AFL/" class="archive-article-date">
+        <time datetime="2021-12-24T08:52:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-24</time>
 </a>
 
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/12/12/2020%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98/" target="_blank">2020极客大挑战</a>
   
-    </h1>
-  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.8k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">7分</span>
+    </span>
+  </span>
+</div>
 
 
-        <div class="article-info info-on-right">
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h1 id="AFL-fuzz-初体验"><a href="#AFL-fuzz-初体验" class="headerlink" title="AFL(fuzz)初体验"></a>AFL(fuzz)初体验</h1><p>AFL是一种用来fuzzing的一种工具</p>
+<a id="more"></a>
+
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p>官网链接如下：<a href="https://github.com/google/AFL" target="_blank" rel="noopener">https://github.com/google/AFL</a></p>
+<p>我这里是基于Ubuntu18安装的<br>执行指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+<p>其他平台的安装可以通过docs目录下的INSTALL文档查看安装说明</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="stdin获取输入"><a href="#stdin获取输入" class="headerlink" title="stdin获取输入"></a>stdin获取输入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ .&#x2F;afl-fuzz -i testcase_dir -o findings_dir &#x2F;path&#x2F;to&#x2F;program [...params...]</span><br></pre></td></tr></table></figure>
+
+<p>其中<br> -i 后是一个具有初始测试用例的只读目录<br>-o 后是一个存储在使用过程中产生的各种信息<br>/path/to/program […params…] 是指当前需要测试的程序</p>
+<h3 id="文件输入"><a href="#文件输入" class="headerlink" title="文件输入"></a>文件输入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ .&#x2F;afl-fuzz -i testcase_dir -o findings_dir &#x2F;path&#x2F;to&#x2F;program @@</span><br></pre></td></tr></table></figure>
+
+<p>对于从文件中取出输入的程序，使用“@@”标记目标命令行中的位置，其中应放置输入文件名。 Fuzzer将替换此项</p>
+<p>如果文件名格式等不能变我们可以用可以使用-f选项使突变数据写入特定文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">afl-fuzz -i testcase -o findings_dir -f testcase&#x2F;test.bmp  -- .&#x2F;htmldoc --webpage -f out.pdf .&#x2F;poc.html</span><br></pre></td></tr></table></figure>
+
+<h3 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h3><p>如果有源代码我们可以利用afl-gcc编译来更快的进行fuzz</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ CC&#x3D;&#x2F;path&#x2F;to&#x2F;afl&#x2F;afl-gcc .&#x2F;configure</span><br><span class="line">$ make clean all</span><br></pre></td></tr></table></figure>
+
+<p>对于C ++程序可以用CXX=/path/to/afl/afl-g++</p>
+<p>对于没有源码的二进制文件，我们需要利用qemu来模拟环境，可以通过以下方式快速搭建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd qemu_mode</span><br><span class="line">$ .&#x2F;build_qemu_support.sh</span><br></pre></td></tr></table></figure>
+
+<p>​    对于缺少库等文件，可以通过阅读 qemu_mode/README.qemu.来进行解决</p>
+<h2 id="界面介绍"><a href="#界面介绍" class="headerlink" title="界面介绍"></a>界面介绍</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">                       american fuzzy lop 2.57b (htmldoc)</span><br><span class="line"></span><br><span class="line">┌─ process timing ─────────────────────────────────────┬─ overall results ─────┐</span><br><span class="line">│        run time : 0 days, 0 hrs, 0 min, 13 sec       │  cycles done : 0      │</span><br><span class="line">│   last new path : 0 days, 0 hrs, 0 min, 1 sec        │  total paths : 40     │</span><br><span class="line">│ last uniq crash : 0 days, 0 hrs, 0 min, 1 sec        │ uniq crashes : 3      │</span><br><span class="line">│  last uniq hang : 0 days, 0 hrs, 0 min, 10 sec       │   uniq hangs : 1      │</span><br><span class="line">├─ cycle progress ────────────────────┬─ map coverage ─┴───────────────────────┤</span><br><span class="line">│  now processing : 0 (0.00%)         │    map density : 3.50% &#x2F; 4.01%         │</span><br><span class="line">│ paths timed out : 0 (0.00%)         │ count coverage : 1.25 bits&#x2F;tuple       │</span><br><span class="line">├─ stage progress ────────────────────┼─ findings in depth ────────────────────┤</span><br><span class="line">│  now trying : bitflip 1&#x2F;1           │ favored paths : 1 (2.50%)              │</span><br><span class="line">│ stage execs : 554&#x2F;1440 (38.47%)     │  new edges on : 25 (62.50%)            │</span><br><span class="line">│ total execs : 957                   │ total crashes : 25 (3 unique)          │</span><br><span class="line">│  exec speed : 90.42&#x2F;sec (slow!)     │  total tmouts : 44 (5 unique)          │</span><br><span class="line">├─ fuzzing strategy yields ───────────┴───────────────┬─ path geometry ────────┤</span><br><span class="line">│   bit flips : 0&#x2F;0, 0&#x2F;0, 0&#x2F;0                         │    levels : 2          │</span><br><span class="line">│  byte flips : 0&#x2F;0, 0&#x2F;0, 0&#x2F;0                         │   pending : 40         │</span><br><span class="line">│ arithmetics : 0&#x2F;0, 0&#x2F;0, 0&#x2F;0                         │  pend fav : 1          │</span><br><span class="line">│  known ints : 0&#x2F;0, 0&#x2F;0, 0&#x2F;0                         │ own finds : 39         │</span><br><span class="line">│  dictionary : 0&#x2F;0, 0&#x2F;0, 0&#x2F;0                         │  imported : n&#x2F;a        │</span><br><span class="line">│       havoc : 0&#x2F;0, 0&#x2F;0                              │ stability : 100.00%    │</span><br><span class="line">│        trim : 0.00%&#x2F;77, n&#x2F;a                         ├────────────────────────┘</span><br></pre></td></tr></table></figure>
+
+
+
+<p>process timing – 指示了fuzzing测试的时间消耗。<br>overall results – 汇总了fuzzing测试的执行结果。<br>  第一个状态栏cycles done表明fuzzing的轮数，其颜色值得说明一下，最开始是用品红色表示其处于the first pass，正如截图中所示。如果在the first pass后有新的发现，进入子过程，颜色会变成黄色，所有子过程完成后将会变成蓝色，最后变成绿色的话表明已经长时间没有新的动作了，此时也提示我们应该手动ctrl-c去关闭fuzzing。<br>cycle progress – 展示了当前队列中fuzzer的位置，以及放弃了的超时输入。<br>map coverage – 展示了程序的覆盖率。<br>stage progress – 进一步展示了fuzzer的执行过程细节。<br>        now trying指明当前所用的变异输入的方法，exec speed指明测试用例的执行速度，正常情况下是超过500 exec/sec，长时间低于100的话，建议最好查看perf_tips.txt来寻求优化。<br>findings in depth – 展示了一些路径、crash的信息。<br>fuzzing strategy yields – 进一步展示了AFL所做的工作，采用的策略情况。<br>path geometry – 汇总了路径测试的相关信息。<br>  levels表示测试等级，pending表示还没有经过fuzzing的输入数量，pend fav表明fuzzer感兴趣的输入数量，own finds表示在fuzzing过程中新找到的，或者是并行测试从另一个实例导入的，imported中的n/a表明不可用，即没有导入。最后说明一下stability，表明相同输入是否产生了相同的行为，一般结果都是100%，如果低于100%并且变红，则需要查阅官方文档寻找解决步骤。</p>
+<h2 id="利用AFL对htmldoc（开源项目）进行fuzz"><a href="#利用AFL对htmldoc（开源项目）进行fuzz" class="headerlink" title="利用AFL对htmldoc（开源项目）进行fuzz"></a>利用AFL对htmldoc（开源项目）进行fuzz</h2><p>CVE-2021-43579 中提到了在image_load_bmp（）中，从BMP文件头读取ColorS_USED变量，直接用于读入固定大小的缓冲区。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">static int			&#x2F;* O - 0 &#x3D; success, -1 &#x3D; fail *&#x2F;</span><br><span class="line">image_load_bmp(image_t *img,	&#x2F;* I - Image to load into *&#x2F;</span><br><span class="line">               FILE    *fp,	&#x2F;* I - File to read from *&#x2F;</span><br><span class="line">	       int     gray,	&#x2F;* I - Grayscale image? *&#x2F;</span><br><span class="line">               int     load_data)&#x2F;* I - 1 &#x3D; load image data, 0 &#x3D; just info *&#x2F;</span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  uchar		colormap[256][4];</span><br><span class="line">  ...</span><br><span class="line">  colors_used      &#x3D; read_dword(fp);</span><br><span class="line">  ...</span><br><span class="line">  fread(colormap, colors_used, 4, fp);</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一个恶意制作的BMP文件可以将ColorS_USED变量设置为足够大的数字，以溢出堆栈，从而返回地址。</p>
+<p>针对此问题我安装了htmldoc-1.9.12版本，并对其进行针对性测试<br>首先利用以下指令利用afl-gcc编译并安装在指定目录下，在配置文件后面加上–enable-debug可以留下符号表方便调试的时候找到出错的函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;configure --disable-shared CC&#x3D;&quot;afl-gcc&quot; CXX&#x3D;&quot;afl-g++&quot; --enable-debug --prefix&#x3D;$PWD&#x2F;installed</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>我们先创建一个testcase文件用来存放初始案例（尽量要小），然后开始运行</p>
+<p>ps：对了在此之前我们应该讲poc.html中的图片路径给改到testcase下，这里使用-f testcase/test.bmp目的是将突变数据写入test.bmp(单一变量)</p>
+<p>记得要在root权限下执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo core &gt;&#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;core_pattern</span><br><span class="line"></span><br><span class="line">afl-fuzz -i testcase -o findings_dir -f testcase&#x2F;test.bmp  -- .&#x2F;htmldoc --webpage -f out.pdf .&#x2F;poc.html</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/12/24/AFL/image-20211224154837206.png" alt="image-20211224154837206"></p>
+<p>这里提示程序内存受到了限制我们利用-m进行修改(-m none 无限制)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">afl-fuzz -m none -i testcase -o findings_dir -f testcase&#x2F;test.bmp  -- .&#x2F;htmldoc --webpage -f out.pdf .&#x2F;poc.html</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/12/24/AFL/image-20211224155500580.png" alt="image-20211224155500580"></p>
+<p>入上图所示，已经开始了fuzz测试，并且很快就发现了第一个crashes，exec speed提示我们的速度slow，我在之后会想办法利用llvm和并行测试进行提速。</p>
+<p><img src="/2021/12/24/AFL/image-20211224155928702.png" alt="image-20211224155928702"></p>
+<p>在五分钟之后就出现了16个uniq crashes，这里我们对第一个crashes进行分析</p>
+<p><img src="/2021/12/24/AFL/image-20211224160138865.png" alt="image-20211224160138865"></p>
+<p><img src="/2021/12/24/AFL/image-20211224160435059.png" alt="image-20211224160435059"></p>
+<p>发现出现了缓冲区溢出的报错，我们这里就直接对这个crashes进行调试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from pwn import* context(log_level&#x3D;&quot;debug&quot;, arch&#x3D;&quot;amd64&quot;, os&#x3D;&quot;linux&quot;)p &#x3D; gdb.debug([&#39;.&#x2F;htmldoc&#39;, &#39;--webpage&#39;,&#39;-f&#39;,&#39;out.pdf&#39;,&#39;.&#x2F;test.html&#39;])p.interactive()</span><br></pre></td></tr></table></figure>
+
+<p>在遇到段错误时，输入bt命令，即可跟踪错误，非常好用，方便记忆。这里我们利用bt指令查看错误</p>
+<p><img src="/2021/12/24/AFL/image-20211224161219914.png" alt="image-20211224161219914"></p>
+<p>这里我以fread为中心进行调试，找到fread的基地址后去ida里面看这块的代码</p>
+<p><img src="/2021/12/24/AFL/image-20211224161633802.png" alt="image-20211224161633802"></p>
+<p><img src="/2021/12/24/AFL/image-20211224162022086.png" alt="image-20211224162022086"></p>
+<p>通过上面的报错可以推测就是__fread_chk出现了报错发现了缓冲区溢出，因为这个项目是开源的，我直接顺藤摸瓜分析这部分的源代码，找到为啥会出现这个问题，</p>
+<p><img src="/2021/12/24/AFL/image-20211224162212027.png" alt="image-20211224162212027"></p>
+<p><img src="/2021/12/24/AFL/image-20211224162224267.png" alt="image-20211224162224267"></p>
+<p>通过分析这几块代码便可以发现CVE-2021-43579提到的缓冲区溢出的漏洞</p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Chenqiw
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://yoursite.com/2021/12/24/AFL/" title="AFL" target="_blank">http://yoursite.com/2021/12/24/AFL/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
-          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
 
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2021/12/24/AFL/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/11/30/11%E6%9C%88buu%E5%88%B7%E9%A2%98/" class="archive-article-date">
-        <time datetime="2020-11-29T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-30</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/07/21/7%E6%9C%88%E5%88%B7%E9%A2%98%E6%9D%82%E7%83%A9/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">7月刷题杂烩</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/11/30/11%E6%9C%88buu%E5%88%B7%E9%A2%98/" target="_blank">11月buu刷题</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/09/23/%E5%85%B3%E4%BA%8Eunlink%20%E6%9C%BA%E5%88%B6%E7%9A%84%E5%88%86%E6%9E%90%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2020-09-22T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-23</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/09/23/%E5%85%B3%E4%BA%8Eunlink%20%E6%9C%BA%E5%88%B6%E7%9A%84%E5%88%86%E6%9E%90%E6%80%BB%E7%BB%93/" target="_blank">关于unlink 机制的分析总结</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/06/05/srop%E7%9A%84%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2020-06-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-05</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/06/05/srop%E7%9A%84%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" target="_blank">srop的知识总结</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2020/04/08/%E6%A0%88%E8%BF%81%E7%A7%BB%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2020-04-07T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-08</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2020/04/08/%E6%A0%88%E8%BF%81%E7%A7%BB%E8%AF%A6%E8%A7%A3/" target="_blank">栈迁移详解</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
-  
+
+
 
 
           </div>
@@ -435,8 +487,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
