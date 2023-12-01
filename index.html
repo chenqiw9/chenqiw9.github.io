@@ -17,10 +17,12 @@
     <body>
         <div id="main">
             <div id="error">本页面采用HTML5编辑，目前您的浏览器无法显示，请换成谷歌(<a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI">Chrome</a>)或者火狐(<a href="http://firefox.com.cn/download/">Firefox</a>)浏览器，或者其他游览器的最新版本。</div>
-            <audio autoplay="autoplay" height="100" width="100">
+            <!-- <audio autoplay="autoplay" height="100" width="100">
                     <source src="renxi.mp3" type="audio/mp3" />
                     <embed height="100" width="100" src="renxi.mp3" />
-            </audio>
+            </audio> -->
+            <!-- <audio id="bgMusic" src="./renxi.mp3" loop></audio>
+            <button id="playButton">播放音乐</button> -->
             <div id="wrap">
                 <div id="text">
                     <div id="code"> <font color="#FF0000"> <span class="say">胡丹宝宝，我喜欢你</span><br>
@@ -55,6 +57,7 @@
     </script>
 
     <script>
+
     (function(){
         var canvas = $('#canvas');
 		
@@ -101,7 +104,11 @@
                 speed: 10,
             }
         }
-
+        function playMusic() {
+        // 在这里添加播放音乐的逻辑
+            var audio = new Audio('./renxi.mp3');
+            audio.play();
+        }
         var tree = new Tree(canvas[0], width, height, opts);
         var seed = tree.seed;
         var foot = tree.footer;
@@ -116,6 +123,7 @@
                 canvas.unbind("click");
                 canvas.unbind("mousemove");
                 canvas.removeClass('hand');
+                playMusic();
             }
         }).mousemove(function(e){
             var offset = canvas.offset(), x, y;
@@ -196,7 +204,21 @@
             }
         }));
 
+
         var runAsync = eval(Jscex.compile("async", function () {
+            // var bgMusic = document.getElementById("bgMusic");
+            // var playButton = document.getElementById("playButton");
+            // playButton.addEventListener("click", function() {
+            //     bgMusic.play();
+            //     playButton.disabled = true;
+            // });
+
+            
+            // window.addEventListener("DOMContentLoaded", function() {
+            //     bgMusic.load();
+            // });
+            
+            // bgMusic.play();
             $await(seedAnimate());
             $await(growAnimate());
             $await(flowAnimate());
