@@ -107,6 +107,7 @@
         function playMusic() {
         // 在这里添加播放音乐的逻辑
             var audio = new Audio('./renxi.mp3');
+            audio.loop = true;
             audio.play();
         }
         var tree = new Tree(canvas[0], width, height, opts);
